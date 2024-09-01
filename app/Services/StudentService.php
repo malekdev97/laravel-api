@@ -39,17 +39,17 @@ class StudentService {
         return $this->studentRepository->createStudent($data);
     }
 
-    public function getStudentById(int $id)
+    public function getStudentById(string $id)
     {
         return $this->studentRepository->getStudentById($id);
     }
 
-    public function updateStudent(array $data, int $id): Student
+    public function updateStudent(array $data, string $id): Student
     {
         return $this->studentRepository->updateStudent($data, $id);
     }
 
-    public function deleteStudent(int $id)
+    public function deleteStudent(string $id)
     {
         $this->studentRepository->deleteStudent($id);
     }

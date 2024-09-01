@@ -30,7 +30,16 @@ class StudentController extends Controller
         return response()->json($students, 200);
     }
 
+    public function getStudentPagination(int $page)
+    {
+        $students = $this->studentService->getStudentPagination($page);
 
+        if($students->isEmpty()) {
+            return response()->json(['message' => 'No students found'], 404);
+        }
+
+        return response()->json($students, 200);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -54,6 +63,14 @@ class StudentController extends Controller
     public function show(string $id)
     {
         //
+        try {
+            $student = $this->studentService->getStudentById($id);
+
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => $e->getMessage()], 404);
+        }
+
+        return response()->json($student, 201);
     }
 
     /**
@@ -62,6 +79,14 @@ class StudentController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        try {
+            $student = $this->studentService->updateStudent($request->all(), $id);
+
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => $e->getMessage()], 404);
+        }
+
+        return response()->json($student, 200);
     }
 
     /**
@@ -70,5 +95,14 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         //
+
+        try {
+            $this->studentService->deleteStudent($id);
+
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => $e->getMessage()], 404);
+        }
+
+        return response()->json(['message' => 'Student deleted successfully'], 200);
     }
 }

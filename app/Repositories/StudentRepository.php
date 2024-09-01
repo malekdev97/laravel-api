@@ -23,12 +23,12 @@ class StudentRepository {
         return Student::create($data);
     }
 
-    public function getStudentById(int $id)
+    public function getStudentById(string $id)
     {
         return Student::findOrFail($id);
     }
 
-    public function updateStudent(array $data, int $id)
+    public function updateStudent(array $data, string $id)
     {
         $student = Student::findOrFail($id);
 
@@ -42,7 +42,7 @@ class StudentRepository {
         return $student;
     }
 
-    public function deleteStudent(int $id)
+    public function deleteStudent(string $id)
     {
         Student::destroy($id);
     }
