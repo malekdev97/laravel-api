@@ -27,7 +27,7 @@ class StudentController extends Controller
             return response()->json(['message' => 'No students found'], 404);
         }
 
-        return response()->json($students, 200);
+        return response()->json(['students' => $students], 200);
     }
 
     public function getStudentPagination(int $page)
@@ -38,7 +38,8 @@ class StudentController extends Controller
             return response()->json(['message' => 'No students found'], 404);
         }
 
-        return response()->json($students, 200);
+        return response()->json(['students' => $students], 200);
+
     }
 
     /**
