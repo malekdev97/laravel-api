@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -21,7 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/employee/get-all', [Employee::class, 'getAllEmployees']);
+Route::get('/employee/get-all', [EmployeeController::class, 'getAllEmployees']);
+Route::post('/employee/create', [EmployeeController::class, 'createEmployee']);
 
 Route::get('/post', [PostController::class, 'index']);
 Route::get('/post/{id}', [PostController::class, 'findPostById']);

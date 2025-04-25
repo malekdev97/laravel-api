@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('app');
+    return "hello world";
 });
 
 Route::get('/jobs', function() {
